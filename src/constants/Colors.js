@@ -1,47 +1,47 @@
 export const color = {
   // White
-  pureWhite: '#FFFFFF',
-  paleWhite: '#F7FCFD',
-  dullWhite: '#F2F2F2',
+  white_pure: '#FFFFFF',
+  white_pale: '#F7FCFD',
+  white_dull: '#F2F2F2',
 
   // Gray
-  darkGray: '#4D4D4D',
-  lightGray: '#CDCECE',
+  gray_dark: '#4D4D4D',
+  gray_light: '#CDCECE',
   gray: '#837C7C',
 
   // Black
   black: '#000000',
-  offBlack: '#1E1E1E',
+  black_off: '#1E1E1E',
 
   // Red
-  darkRed: '#AD1919',
-  lightRed: '#FFA8A8',
+  red_dark: '#AD1919',
+  red_light: '#FFA8A8',
   red: '#F07373',
 
   // Blue
-  darkRed: '#536BC2',
-  lightRed: '#32427C',
+  blue_dark: '#536BC2',
+  blue_light: '#5EFFEC',
   blue: '#84B5FF',
 
   // Green
-  emeraldGreen: '#3CCA8E',
-  lightGreen: '#79F1CD',
+  green_emerald: '#3CCA8E',
+  green_dark: '#72994C',
+  green_light: '#79F1CD',
   green: '#A6D677',
 
   // Purple
-  darkPurple: '#7600AE',
-  lightPurple: '#F364FF',
+  purple_pink: '#D16183',
+  purple_dark: '#7600AE',
+  purple_light: '#F364FF',
   purple: '#A800F8',
 
   // Yellow
-  darkYellow: '#B7A504',
-  lightYellow: '#FFF174',
+  yellow_dark: '#B7A504',
+  yellow_light: '#FFF174',
   yellow: '#F2DF33',
 
   // Orange
-  darkOrange: '#FF8A00',
-  lightOrange: '#FFC989',
+  orange_dark: '#FF8A00',
+  orange_light: '#FFC989',
   orange: '#FFB257',
-
-
-}
+};

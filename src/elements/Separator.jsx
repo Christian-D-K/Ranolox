@@ -1,21 +1,26 @@
-import React from "react";
-import { color } from "../constants/Colors";
-
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
-} from "react-native";
+} from 'react-native';
+import { string } from 'prop-types';
+
+import { color } from '../constants/Colors';
 
 export default function Separator(props) {
   const { title } = props;
   return (
     <View style={styles.container}>
       <Text style={styles.separatorText}>{title}</Text>
-      <View style={styles.separatorBar}></View>
+      <View style={styles.separatorBar} />
     </View>
-  )
+  );
 }
+
+Separator.propTypes = {
+  title: string.isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -26,7 +31,7 @@ const styles = StyleSheet.create({
     height: 24,
   },
   separatorBar: {
-    backgroundColor: color.lightGray,
+    backgroundColor: color.gray_light,
     justifyContent: 'center',
     height: 3,
     width: '100%',
@@ -35,12 +40,12 @@ const styles = StyleSheet.create({
   },
   separatorText: {
     textAlign: 'center',
-    backgroundColor: color.paleWhite,
-    color: color.lightGray,
+    backgroundColor: color.white_pale,
+    color: color.gray_light,
     fontSize: 24,
     zIndex: 5,
     paddingLeft: 10,
     paddingRight: 10,
     lineHeight: 24,
-  }
-})
+  },
+});

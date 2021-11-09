@@ -1,21 +1,54 @@
-import React, { useState } from "react";
-import { color } from "../constants/Colors";
+import React, { useState, useRef } from 'react';
 import {
   View,
   Text,
   TextInput,
   StyleSheet,
-} from "react-native";
-
+  TouchableOpacity,
+  Animated,
+} from 'react-native';
 import {
-  shape,
   string,
   bool,
+  func,
 } from 'prop-types';
+import { Ionicons } from '@expo/vector-icons';
+
+import { color } from '../constants/Colors';
 
 export default function InputArea(props) {
-  const { title, multiline } = props;
-  const [textBody, setTextBody] = useState('');
+  const {
+    title,
+    multiline,
+    inputValueSet,
+    inputValue,
+  } = props;
+
+  const [clearButtonView, setClearButtonView] = useState(1);
+
+  // 初期値の設定
+  const spreadInputBoxAnim = useRef(new Animated.Value(32)).current;
+
+  // フォーカスイベント
+  const onFocus = () => {
+    Animated.timing(spreadInputBoxAnim, {
+      toValue: 56,
+      duration: 200,
+    }).start();
+    setClearButtonView(0);
+  };
+
+  // ブラーイベント
+  const onBlur = () => {
+    Animated.timing(spreadInputBoxAnim, {
+      toValue: 32,
+      duration: 200,
+      delay: 50,
+    }).start();
+    setClearButtonView(1);
+  };
+
+  const clearInputValue = () => inputValueSet('');
 
   return (
     <View style={styles.inputContainer}>
@@ -24,36 +57,46 @@ export default function InputArea(props) {
       >
         {title}
       </Text>
-      <View style={styles.input}>
+      <Animated.View
+        style={[styles.input, { height: spreadInputBoxAnim }]}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      >
         <TextInput
-          style={styles.inputText}
-          value={textBody}
+          style={[styles.inputText]}
+          value={inputValue}
           multiline={multiline}
           autoFocus
-          onChangeText={(text) => { setTextBody(text); }}
+          onChangeText={inputValueSet}
         />
-        <Text
+        <TouchableOpacity
           style={styles.clearButton}
+          onPress={clearInputValue}
         >
-          X
-        </Text>
-      </View>
+          <Ionicons
+            name="close-circle"
+            size={24}
+            color={color.gray_light}
+            style={{ opacity: clearButtonView }}
+          />
+        </TouchableOpacity>
+      </Animated.View>
     </View>
-  )
-
+  );
 }
 
 InputArea.propTypes = {
-  title: string,
-  textBody: string,
+  title: string.isRequired,
   multiline: bool,
+  inputValueSet: func,
+  inputValue: string,
 };
 
-InputArea.defaulProps = {
-  title: '',
-  textBody: 'Helo',
+InputArea.defaultProps = {
   multiline: false,
-}
+  inputValueSet: null,
+  inputValue: '',
+};
 
 const styles = StyleSheet.create({
   inputContainer: {
@@ -64,28 +107,27 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     fontSize: 18,
     color: color.gray,
+    height: 32,
   },
   input: {
-    height: 32,
     marginHorizontal: 8,
     paddingHorizontal: 8,
-    backgroundColor: color.pureWhite,
+    backgroundColor: color.white_pure,
     borderBottomWidth: 0.3,
-    borderBottomColor: color.darkGray,
+    borderBottomColor: color.gray_dark,
     flexDirection: 'row',
   },
   inputText: {
     fontSize: 18,
     paddingVertical: 8,
-    color: color.darkGray,
+    color: color.gray_dark,
     width: '90%',
   },
   clearButton: {
-    backgroundColor: color.green,
     paddingHorizontal: 8,
     fontSize: 18,
-    alignSelf: 'center',
     justifyContent: 'flex-end',
     color: color.gray,
-  }
-})
+    alignSelf: 'center',
+  },
+});

@@ -1,12 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import BoxListScreen from './src/screens/BoxListScreen';
 
 export default function App() {
   return (
-    <BoxListScreen></BoxListScreen>
+    <View style={styles.container}>
+      <BoxListScreen />
+    </View>
   );
 }
 

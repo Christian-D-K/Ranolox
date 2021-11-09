@@ -1,6 +1,7 @@
 {
     "env": {
         "browser": true,
+        "commonjs": true,
         "es2021": true
     },
     "extends": [
@@ -11,13 +12,13 @@
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": 13,
-        "sourceType": "module"
+        "ecmaVersion": 12
     },
     "plugins": [
         "react"
     ],
     "rules": {
-        "no-use-before-defined" : 0
+        "no-use-before-define" : 0,
+        "import/prefer-default-export": 0
     }
 }
